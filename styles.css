@@ -1,0 +1,89 @@
+.container {
+    padding-top: 50px; /* Ensure top padding to push content below the navbar */
+}
+
+h1 {
+    font-size: 3em; /* Large font size for main titles */
+    text-align: center; /* Center align title */
+    margin-top: 20px; /* Increased top margin for better visual separation from the navbar */
+    margin-bottom: 0.5em; /* Add a bottom margin to the title for spacing */
+}
+
+* {
+    font-family: Baskerville, serif; /* General font family for nice typography */
+}
+
+.slogan {
+    font-size: 1.2em; /* Slightly larger slogan for emphasis */
+    text-align: center; /* Center align slogan */
+    margin-bottom: 1em; /* Consistent bottom margin for spacing */
+}
+
+/* Removed fixed dimensions for .col as it may not be needed globally */
+.col {
+    align-items: center; /* Center items vertically if using Flexbox */
+}
+
+/* Ensure image dimensions are only controlled where needed, not globally to avoid conflicts */
+img {
+    max-width: 100%; /* Make images responsive */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Footer styling remains the same */
+
+.footer {
+    text-align: center; /* Center align footer content */
+}
+
+/* List styles for projects */
+.projects-list {
+    list-style: none; /* No bullets for the list */
+    padding-left: 0; /* Remove default padding */
+}
+
+.project-item {
+    margin-top: 10px; /* Top margin for spacing */
+    margin-bottom: 10px; /* Bottom margin for spacing */
+    text-align: center; /* Center align project items */
+    background-color: #fff; /* White background for items */
+}
+
+/* Carousel styling simplified to avoid specific dimensions */
+#carouselExampleCaptions {
+    margin: 0 auto; /* Center the carousel */
+    overflow: hidden; /* Hide overflow */
+}
+
+#carouselExampleCaptions img {
+    object-fit: cover; /* Cover the area of the container */
+}
+
+/* Navbar adjustments if needed */
+.navbar {
+    --bs-navbar-padding-x: 1rem; /* Adjust the horizontal padding */
+    --bs-navbar-nav-link-padding-x: 1rem; /* Adjust the padding for nav links */
+}
+
+.navbar-nav .nav-link {
+    font-size: 1rem; /* Adjust the font size for nav links */
+}
+
+/* Adjustments to the card and form styles for better alignment and spacing */
+.card-body {
+    padding: 1rem; /* Padding inside the card for content spacing */
+}
+
+.form-label {
+    font-weight: bold; /* Make form labels bold */
+}
+
+.btn-primary {
+    background-color: #0056b3; /* Adjust button color if needed */
+    border-color: #004085; /* Adjust button border color if needed */
+}
+
+/* Adjust the form-check for better spacing and alignment */
+.form-check-label {
+    margin-left: 0.5rem; /* Add left margin to label text next to the checkbox */
+}
