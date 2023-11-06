@@ -43,10 +43,12 @@ img {
 }
 
 .project-item {
-    margin-top: 10px; /* Top margin for spacing */
-    margin-bottom: 10px; /* Bottom margin for spacing */
     text-align: center; /* Center align project items */
     background-color: #fff; /* White background for items */
+    max-width: 1000px; /* or any other width */
+    margin: auto; /* This centers the item in the container */
+    margin-top: 10px; /* Top margin for spacing */
+    margin-bottom: 10px; /* Bottom margin for spacing */
 }
 
 /* Carousel styling simplified to avoid specific dimensions */
