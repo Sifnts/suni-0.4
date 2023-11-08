@@ -41,7 +41,9 @@ def index():
     if not student_id:
         return redirect(url_for('login'))
 
-    today = datetime.now().strftime("%B %d, %A").title()   # e.g., "November 08, Wednesday"    
+    today = datetime.now().strftime("%A").title()
+    print(f"Today's day in Spanish: {today}")  # Debug print
+
     conn = get_db_connection()
     cur = conn.cursor()
     cur.execute('''
@@ -54,8 +56,11 @@ def index():
         AND sch.DayOfWeek = ?
     ''', (student_id, today))
     schedule_items = cur.fetchall()
+    print(f"Fetched schedule items: {schedule_items}")  # Debug print
     conn.close()
-    return render_template('index.html', index=schedule_items, today=today)
+
+    # Make sure to pass 'schedule_items' with the same name used in the template
+    return render_template('index.html', schedule_items=schedule_items, today=today)
 
 # Account Page
 @app.route('/account')
