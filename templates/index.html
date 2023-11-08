@@ -10,95 +10,39 @@
     <body>
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">SUNI</a>
+              <a class="navbar-brand" href="{{ url_for('index') }}">SUNI</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                  <a class="nav-link active" aria-current="page" href="\templates\index.html">Horario</a>
-                  <a class="nav-link" href="\templates\reservation.html">Reservación de aula</a>
-                  <a class="nav-link" href="\templates\reports.html">Reportar un problema</a>
-                  <a class="nav-link" href="\templates\account.html">Mi cuenta</a>
+                  <a class="nav-link active" aria-current="page" href="{{ url_for('index') }}">Horario</a>
+                  <a class="nav-link" href="{{ url_for('reservation') }}">Reservación de aula</a>
+                  <a class="nav-link" href="{{ url_for('reports') }}">Reportar un problema</a>
+                  <a class="nav-link" href="{{ url_for('account') }}">Mi cuenta</a>
                 </div>
               </div>
             </div>
         </nav>
-        <div class="container">
-            <div class="row">
-            <div class="col">
-                <h1>Horario del día</h1>
-                <p class="slogan">6 de Noviembre de 2023</p>
+        <div class="container mt-4">
+            <h1>Horario del día</h1>
+            <p class="slogan">{{ today }}</p>
+            {% if schedule_items %}
+            <div class="list-group">
+                {% for item in schedule_items %}
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ item.SubjectName }}</h5>
+                        <small>{{ item.start_time }} - {{ item.end_time }}</small>
+                    </div>
+                    <p class="mb-1">Aula: {{ item.ClassroomNumber }}</p>
+                    <small>Profesor: {{ item.TeacherName }}</small>
+                </a>
+                {% endfor %}
             </div>
-            </div>
-        </div>
-        <div class="container">
-            <ul class="projects-list">
-                <li class="project-item">
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col-auto">
-                            <img src="https://via.placeholder.com/100" alt="Placeholder image">
-                        </div>
-                        <div class="col">
-                            <div class="project-info">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <p>Placeholder text for project 1.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="project-item">
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col-auto">
-                            <img src="https://via.placeholder.com/100" alt="Placeholder image">
-                        </div>
-                        <div class="col">
-                            <div class="project-info">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <p>Placeholder text for project 1.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="project-item">
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col-auto">
-                            <img src="https://via.placeholder.com/100" alt="Placeholder image">
-                        </div>
-                        <div class="col">
-                            <div class="project-info">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <p>Placeholder text for project 1.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="project-item">
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col-auto">
-                            <img src="https://via.placeholder.com/100" alt="Placeholder image">
-                        </div>
-                        <div class="col">
-                            <div class="project-info">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <p>Placeholder text for project 1.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+            {% else %}
+            <p>No hay clases programadas para hoy.</p>
+            {% endif %}
         </div>
     </body>
 </html>
