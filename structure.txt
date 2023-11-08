@@ -1,0 +1,164 @@
+Listado de rutas de carpetas para el volumen Windows-SSD
+El número de serie del volumen es C027-4DC7
+C:.
++---static
+|   +---css
+|   +---images
+|   \---js
++---suni_env
+|   +---Lib
+|   |   \---site-packages
+|   |       +---blinker
+|   |       |   \---__pycache__
+|   |       +---blinker-1.7.0.dist-info
+|   |       +---click
+|   |       |   \---__pycache__
+|   |       +---click-8.1.7.dist-info
+|   |       +---colorama
+|   |       |   +---tests
+|   |       |   |   \---__pycache__
+|   |       |   \---__pycache__
+|   |       +---colorama-0.4.6.dist-info
+|   |       |   \---licenses
+|   |       +---flask
+|   |       |   +---json
+|   |       |   |   \---__pycache__
+|   |       |   +---sansio
+|   |       |   |   \---__pycache__
+|   |       |   \---__pycache__
+|   |       +---flask-3.0.0.dist-info
+|   |       +---itsdangerous
+|   |       |   \---__pycache__
+|   |       +---itsdangerous-2.1.2.dist-info
+|   |       +---jinja2
+|   |       |   \---__pycache__
+|   |       +---Jinja2-3.1.2.dist-info
+|   |       +---markupsafe
+|   |       |   \---__pycache__
+|   |       +---MarkupSafe-2.1.3.dist-info
+|   |       +---pip
+|   |       |   +---_internal
+|   |       |   |   +---cli
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---commands
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---distributions
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---index
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---locations
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---metadata
+|   |       |   |   |   +---importlib
+|   |       |   |   |   |   \---__pycache__
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---models
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---network
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---operations
+|   |       |   |   |   +---build
+|   |       |   |   |   |   \---__pycache__
+|   |       |   |   |   +---install
+|   |       |   |   |   |   \---__pycache__
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---req
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---resolution
+|   |       |   |   |   +---legacy
+|   |       |   |   |   +---resolvelib
+|   |       |   |   |   |   \---__pycache__
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---utils
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---vcs
+|   |       |   |   |   \---__pycache__
+|   |       |   |   \---__pycache__
+|   |       |   +---_vendor
+|   |       |   |   +---cachecontrol
+|   |       |   |   |   +---caches
+|   |       |   |   |   |   \---__pycache__
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---certifi
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---chardet
+|   |       |   |   |   +---cli
+|   |       |   |   |   +---metadata
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---colorama
+|   |       |   |   |   \---tests
+|   |       |   |   +---distlib
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---distro
+|   |       |   |   +---idna
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---msgpack
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---packaging
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---pkg_resources
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---platformdirs
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---pygments
+|   |       |   |   |   +---filters
+|   |       |   |   |   |   \---__pycache__
+|   |       |   |   |   +---formatters
+|   |       |   |   |   +---lexers
+|   |       |   |   |   |   \---__pycache__
+|   |       |   |   |   +---styles
+|   |       |   |   |   |   \---__pycache__
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---pyparsing
+|   |       |   |   |   +---diagram
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---pyproject_hooks
+|   |       |   |   |   +---_in_process
+|   |       |   |   |   |   \---__pycache__
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---requests
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---resolvelib
+|   |       |   |   |   +---compat
+|   |       |   |   |   |   \---__pycache__
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---rich
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---tenacity
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---tomli
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---truststore
+|   |       |   |   +---urllib3
+|   |       |   |   |   +---contrib
+|   |       |   |   |   |   +---_securetransport
+|   |       |   |   |   |   \---__pycache__
+|   |       |   |   |   +---packages
+|   |       |   |   |   |   +---backports
+|   |       |   |   |   |   \---__pycache__
+|   |       |   |   |   +---util
+|   |       |   |   |   |   \---__pycache__
+|   |       |   |   |   \---__pycache__
+|   |       |   |   +---webencodings
+|   |       |   |   \---__pycache__
+|   |       |   \---__pycache__
+|   |       +---pip-23.3.1.dist-info
+|   |       +---werkzeug
+|   |       |   +---datastructures
+|   |       |   |   \---__pycache__
+|   |       |   +---debug
+|   |       |   |   +---shared
+|   |       |   |   \---__pycache__
+|   |       |   +---middleware
+|   |       |   |   \---__pycache__
+|   |       |   +---routing
+|   |       |   |   \---__pycache__
+|   |       |   +---sansio
+|   |       |   |   \---__pycache__
+|   |       |   +---wrappers
+|   |       |   |   \---__pycache__
+|   |       |   \---__pycache__
+|   |       +---werkzeug-3.0.1.dist-info
+|   |       \---__pycache__
+|   \---Scripts
+\---templates
