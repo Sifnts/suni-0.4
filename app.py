@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
+from flask import flash  # Import flash at the top of your app.py
 from werkzeug.security import check_password_hash, generate_password_hash
 import sqlite3
 import locale
@@ -89,6 +90,7 @@ def reports():
                      (classroom_id, session['student_id'], incident_date, description))
         conn.commit()
         conn.close()
+        flash('Tu reporte se ha enviado exitosamente.', 'success')  # Add a flash message here
         return redirect(url_for('index'))  # Or redirect to a 'success' page if you have one
     return render_template('reports.html')
 
@@ -109,6 +111,7 @@ def reservation():
                      (classroom_id, group_id, start_time, end_time, date))
         conn.commit()
         conn.close()
+        flash('Tu reservación se ha enviado exitosamente.', 'success')  # Add a flash message here
         return redirect(url_for('index'))  # Or redirect to a 'success' page if you have one
     # Fetch available classrooms for selection in the form
     conn = get_db_connection()
