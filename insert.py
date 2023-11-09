@@ -22,5 +22,5 @@ def insert_data_from_csv(csv_filepath, database_filepath, table_name):
         print(f"An unexpected error occurred: {e}")
 
 # Function call example
-insert_data_from_csv('./csv_files/groups.csv', './university_schedule.db', 'groups')
+insert_data_from_csv('./csv_files/degrees.csv', './university_schedule.db', 'degrees')
 
