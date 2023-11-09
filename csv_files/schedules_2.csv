@@ -1,0 +1,5 @@
+groupId,subjectID,teacherId,classroomId,startTime,endTime,dayOfWeek
+1,6,5,2,10,11,Jueves
+1,6,5,2,11,12,Jueves
+1,1,6,2,12,13,Jueves
+1,1,6,2,13,14,Jueves
