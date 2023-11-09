@@ -95,6 +95,7 @@ def reports():
     return render_template('reports.html')
 
 
+# Reservations Page
 @app.route('/reservation', methods=['GET', 'POST'])
 def reservation():
     if 'student_id' not in session:
