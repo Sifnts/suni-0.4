@@ -67,32 +67,55 @@ def index():
 def account():
     if 'student_id' not in session:
         return redirect(url_for('login'))
-    # Here you would fetch account details based on the student_id in the session
-    # ... (fetch account details logic) ...
-    return render_template('account.html')  # Replace with actual data fetched
+    conn = get_db_connection()
+    student_details = conn.execute('SELECT * FROM students WHERE StudentID = ?', (session['student_id'],)).fetchone()
+    degree_details = conn.execute('SELECT DegreeName FROM degrees WHERE DegreeID = ?', (student_details['DegreeID'],)).fetchone()
+    group_details = conn.execute('SELECT GroupName, Period FROM groups WHERE GroupID = ?', (student_details['GroupID'],)).fetchone()
+    conn.close()
+    return render_template('account.html', student=student_details, degree=degree_details, group=group_details)
+
 
 # Reports Page
 @app.route('/reports', methods=['GET', 'POST'])
 def reports():
     if 'student_id' not in session:
         return redirect(url_for('login'))
-    # Handle form submission
     if request.method == 'POST':
-        # Here you would process the submitted report
-        # ... (process submitted report logic) ...
-        return redirect(url_for('reports_success'))  # Redirect to a success page or back to form with a success message
-    return render_template('reports.html')  # Show the reports form
+        classroom_id = request.form['classroom']
+        incident_date = request.form['incidentDate']
+        description = request.form['description']
+        conn = get_db_connection()
+        conn.execute('INSERT INTO incident_reports (ClassroomID, ReportedBy, IncidentDate, Description) VALUES (?, ?, ?, ?)',
+                     (classroom_id, session['student_id'], incident_date, description))
+        conn.commit()
+        conn.close()
+        return redirect(url_for('index'))  # Or redirect to a 'success' page if you have one
+    return render_template('reports.html')
 
-# Reservation Page
+
 @app.route('/reservation', methods=['GET', 'POST'])
 def reservation():
     if 'student_id' not in session:
         return redirect(url_for('login'))
     if request.method == 'POST':
-        # Process reservation here
-        # ... (reservation handling logic) ...
-        return redirect(url_for('reservation_success'))  # Redirect after handling reservation
-    return render_template('reservation.html')  # Show reservation form
+        classroom_id = request.form['classroom']
+        date = request.form['date']
+        start_time = request.form['startTime']
+        end_time = request.form['endTime']  # You will need to add an input for 'endTime' in the form
+        description = request.form['description']  # Make sure 'description' is for reservation purpose
+        group_id = session['group_id']
+        conn = get_db_connection()
+        conn.execute('INSERT INTO reservations (ClassroomID, GroupID, StartTime, EndTime, Date) VALUES (?, ?, ?, ?, ?)',
+                     (classroom_id, group_id, start_time, end_time, date))
+        conn.commit()
+        conn.close()
+        return redirect(url_for('index'))  # Or redirect to a 'success' page if you have one
+    # Fetch available classrooms for selection in the form
+    conn = get_db_connection()
+    classrooms = conn.execute('SELECT * FROM classrooms').fetchall()
+    conn.close()
+    return render_template('reservation.html', classrooms=classrooms)
+
 
 # Main block to run the app
 if __name__ == '__main__':

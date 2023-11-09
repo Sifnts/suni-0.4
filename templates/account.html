@@ -43,20 +43,16 @@
                             <!-- Displaying user information with readonly inputs -->
                             <div class="mb-3">
                                 <label for="fullName" class="form-label">Nombre Completo</label>
-                                <input type="text" class="form-control" id="fullName" placeholder="Nombre Completo del Alumno" readonly>
-                            </div>
+                                <input type="text" class="form-control" id="fullName" value="{{ student.FullName }}" readonly>                            </div>
                             <div class="mb-3">
                                 <label for="major" class="form-label">Carrera</label>
-                                <input type="text" class="form-control" id="major" placeholder="Carrera del Alumno" readonly>
-                            </div>
+                                <input type="text" class="form-control" id="major" value="{{ degree.DegreeName }}" readonly>                            </div>
                             <div class="mb-3">
                                 <label for="semester" class="form-label">Cuatrimestre</label>
-                                <input type="text" class="form-control" id="semester" placeholder="Cuatrimestre Actual" readonly>
-                            </div>
+                                <input type="text" class="form-control" id="semester" value="{{ group.Period }}" readonly>                            </div>
                             <div class="mb-3">
                                 <label for="group" class="form-label">Grupo</label>
-                                <input type="text" class="form-control" id="group" placeholder="Grupo del Alumno" readonly>
-                            </div>
+                                <input type="text" class="form-control" id="group" value="{{ group.GroupName }}" readonly>                            </div>
                             <!-- Logout button -->
                             <div class="d-grid gap-2">
                                 <button type="button" class="btn btn-danger" onclick="location.href='login.html'">Cerrar Sesión</button>
