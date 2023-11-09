@@ -4,10 +4,26 @@ from werkzeug.security import check_password_hash, generate_password_hash
 import sqlite3
 import locale
 from datetime import datetime  # Corrected import statement
+from datetime import timedelta
 
 locale.setlocale(locale.LC_TIME, 'es_ES')
 app = Flask(__name__)
 app.secret_key = 'your_very_secure_secret_key'  # You should change this to a random secret key
+app.config['SESSION_PERMANENT'] = False
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=1)  # You can define your own duration
+
+@app.before_request
+def before_request():
+    session.modified = True
+    if 'logged_in' in session and session['logged_in']:
+        session.permanent = True  # Reset the session lifetime on activity
+        app.permanent_session_lifetime = timedelta(minutes=1)  # Or whatever your timeout is
+        if 'last_activity' in session:
+            if session['last_activity'] < (datetime.now() - app.permanent_session_lifetime):
+                session.clear()  # Logout user
+                flash('Your session has expired.', 'info')
+                return redirect(url_for('login'))
+        session['last_activity'] = datetime.now()  # Update last activity time
 
 # Database connection
 def get_db_connection():
@@ -119,6 +135,47 @@ def reservation():
     classrooms = conn.execute('SELECT * FROM classrooms').fetchall()
     conn.close()
     return render_template('reservation.html', classrooms=classrooms)
+
+
+@app.route('/admin_login', methods=['GET', 'POST'])
+def admin_login():
+    if request.method == 'POST':
+        admin_id = request.form['admin_id']
+        password = request.form['password']  # Make sure you are using hashed passwords in production
+        conn = get_db_connection()
+        admin = conn.execute('SELECT * FROM admins WHERE admin_id = ?', (admin_id,)).fetchone()
+        conn.close()
+        if admin and check_password_hash(admin['password_hash'], password):
+            session['admin_id'] = admin_id
+            return redirect(url_for('admin_dashboard'))
+        else:
+            flash('Invalid admin ID or password', 'error')
+    return render_template('admin_login.html')
+
+
+@app.route('/admin_dashboard')
+def admin_dashboard():
+    # Check if 'admin_id' is in session and redirect if not
+    if 'admin_id' not in session:
+        # Redirect to the admin login page if 'admin_id' not in session
+        flash('Please log in to access the admin dashboard.', 'warning')
+        return redirect(url_for('admin_login'))
+    
+    # Fetch all reservations and reports to display to the admin
+    conn = get_db_connection()
+    reservations = conn.execute('SELECT * FROM reservations').fetchall()
+    reports = conn.execute('SELECT * FROM incident_reports').fetchall()
+    conn.close()
+    return render_template('admin_dashboard.html', reservations=reservations, reports=reports)
+
+
+@app.route('/logout')
+def logout():
+    # Clear all data in the session
+    session.clear()
+    flash('You have been logged out.', 'success')
+    return redirect(url_for('login'))  # Redirect to login or home page
+
 
 
 # Main block to run the app

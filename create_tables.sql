@@ -78,3 +78,8 @@ CREATE TABLE IF NOT EXISTS incident_reports (
     Description TEXT NOT NULL,
     FOREIGN KEY(ClassroomID) REFERENCES classrooms(ClassroomID)
 );
+
+CREATE TABLE IF NOT EXISTS admins (
+    admin_id TEXT PRIMARY KEY,
+    password_hash TEXT NOT NULL
+);
