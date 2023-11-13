@@ -170,8 +170,18 @@ def admin_dashboard():
     
     # Fetch all reservations and reports to display to the admin
     conn = get_db_connection()
-    reservations = conn.execute('SELECT * FROM reservations').fetchall()
-    reports = conn.execute('SELECT * FROM incident_reports').fetchall()
+    reservations = conn.execute('''
+        SELECT r.*, g.GroupName, c.ClassroomNumber
+        FROM reservations r
+        JOIN groups g ON r.GroupID = g.GroupID
+        JOIN classrooms c ON r.ClassroomID = c.ClassroomID
+    ''').fetchall()
+    reports = conn.execute('''
+        SELECT ir.*, c.ClassroomNumber, s.FullName as ReportedBy
+        FROM incident_reports ir
+        JOIN classrooms c ON ir.ClassroomID = c.ClassroomID
+        JOIN students s ON ir.ReportedBy = s.StudentID
+    ''').fetchall()
     conn.close()
     return render_template('admin_dashboard.html', reservations=reservations, reports=reports)
 

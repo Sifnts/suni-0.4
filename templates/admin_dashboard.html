@@ -18,8 +18,8 @@
                 <thead>
                     <tr>
                         <th>Reservation ID</th>
-                        <th>Classroom ID</th>
-                        <th>Group ID</th>
+                        <th>Classroom Name</th>
+                        <th>Group Name</th>
                         <th>Start Time</th>
                         <th>End Time</th>
                         <th>Date</th>
@@ -29,8 +29,8 @@
                     {% for reservation in reservations %}
                         <tr>
                             <td>{{ reservation.ReservationID }}</td>
-                            <td>{{ reservation.ClassroomID }}</td>
-                            <td>{{ reservation.GroupID }}</td>
+                            <td>{{ reservation.ClassroomNumber }}</td> <!-- Changed to display classroom number -->
+                            <td>{{ reservation.GroupName }}</td> <!-- Changed to display group name -->
                             <td>{{ reservation.StartTime }}</td>
                             <td>{{ reservation.EndTime }}</td>
                             <td>{{ reservation.Date }}</td>
@@ -45,7 +45,7 @@
                 <thead>
                     <tr>
                         <th>Report ID</th>
-                        <th>Classroom ID</th>
+                        <th>Classroom Name</th>
                         <th>Reported By</th>
                         <th>Incident Date</th>
                         <th>Description</th>
@@ -55,8 +55,8 @@
                     {% for report in reports %}
                         <tr>
                             <td>{{ report.IncidentReportID }}</td>
-                            <td>{{ report.ClassroomID }}</td>
-                            <td>{{ report.ReportedBy }}</td>
+                            <td>{{ report.ClassroomNumber }}</td> <!-- Changed to display classroom number -->
+                            <td>{{ report.ReportedBy }}</td> <!-- Now shows the full name -->
                             <td>{{ report.IncidentDate }}</td>
                             <td>{{ report.Description }}</td>
                         </tr>
