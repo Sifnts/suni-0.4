@@ -91,6 +91,13 @@ def account():
     conn.close()
     return render_template('account.html', student=student_details, degree=degree_details, group=group_details)
 
+    # Account Page
+@app.route('/map')
+def map():
+    if 'student_id' not in session:
+        return redirect(url_for('login'))
+    return render_template('map.html')
+
 
 # Reports Page
 @app.route('/reports', methods=['GET', 'POST'])
