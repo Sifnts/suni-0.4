@@ -3,31 +3,30 @@
 }
 
 h1 {
-    color: #000;
+    color: #AE0C45;
     text-align: center;
     font-family: Manrope;
     font-size: 3em;
     font-style: normal;
-    font-weight: bold;
+    font-weight: bolder;
 }
 
 * {
     font-family: Manrope, sans-serif; /* General font family for nice typography */
 }
 
-title{
-    color: #000;
-    text-align: center;
-    font-family: Manrope;
-    font-size: 3em;
-    font-style: normal;
-    font-weight: 2.2em;
-}
-
 .slogan {
     font-size: 1.2em; /* Slightly larger slogan for emphasis */
     text-align: center; /* Center align slogan */
     margin-bottom: 1em; /* Consistent bottom margin for spacing */
+}
+
+.slogan .today {
+    color: #AE0C45;
+    text-align: center;
+    font-family: Manrope;
+    font-size: 1.2em;
+    margin-bottom: 1em;
 }
 
 /* Removed fixed dimensions for .col as it may not be needed globally */

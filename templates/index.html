@@ -37,7 +37,7 @@
               {% endif %}
             {% endwith %}
             <h1>Horario del día</h1>
-            <p class="slogan">{{ today }}</p>
+            <p class="slogan">Hoy es: <span class="today">{{ today }}</span></p>
             {% if schedule_items %}
             <div class="list-group">
                 {% for item in schedule_items %}
