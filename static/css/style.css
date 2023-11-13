@@ -3,14 +3,25 @@
 }
 
 h1 {
-    font-size: 3em; /* Large font size for main titles */
-    text-align: center; /* Center align title */
-    margin-top: 20px; /* Increased top margin for better visual separation from the navbar */
-    margin-bottom: 0.5em; /* Add a bottom margin to the title for spacing */
+    color: #000;
+    text-align: center;
+    font-family: Manrope;
+    font-size: 3em;
+    font-style: normal;
+    font-weight: bold;
 }
 
 * {
-    font-family: Baskerville, serif; /* General font family for nice typography */
+    font-family: Manrope, sans-serif; /* General font family for nice typography */
+}
+
+title{
+    color: #000;
+    text-align: center;
+    font-family: Manrope;
+    font-size: 3em;
+    font-style: normal;
+    font-weight: 2.2em;
 }
 
 .slogan {
