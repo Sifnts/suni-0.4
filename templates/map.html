@@ -27,39 +27,15 @@
         </nav>
         <div class="container">
             <div class="row">
-            <div class="col">
-                <h1>Mi Cuenta</h1>
-                <p class="slogan">Cuenta institucional UNE/SUNI</p>
+            <div class="col" style="padding-top: 20px;">
+                <h1>Mapa de Salones UNE</h1>
+                <p class="slogan">Navegación guiada en tu campus universitario.</p>
             </div>
             </div>
         </div>
         <div class="container my-4">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <div class="card shadow">
-                        <div class="card-header">
-                            <h2>Información de la Cuenta</h2>
-                        </div>
-                        <div class="card-body">
-                            <!-- Displaying user information with readonly inputs -->
-                            <div class="mb-3">
-                                <label for="fullName" class="form-label">Nombre Completo</label>
-                                <input type="text" class="form-control" id="fullName" value="{{ student.FullName }}" readonly>                            </div>
-                            <div class="mb-3">
-                                <label for="major" class="form-label">Carrera</label>
-                                <input type="text" class="form-control" id="major" value="{{ degree.DegreeName }}" readonly>                            </div>
-                            <div class="mb-3">
-                                <label for="semester" class="form-label">Cuatrimestre</label>
-                                <input type="text" class="form-control" id="semester" value="{{ group.Period }}" readonly>                            </div>
-                            <div class="mb-3">
-                                <label for="group" class="form-label">Grupo</label>
-                                <input type="text" class="form-control" id="group" value="{{ group.GroupName }}" readonly>                            </div>
-                            <!-- Logout button -->
-                            <div class="d-grid gap-2">
-                                <button type="button" class="btn btn-danger" onclick="location.href='login.html'">Cerrar Sesión</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
