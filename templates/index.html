@@ -38,7 +38,7 @@
                 {% endfor %}
               {% endif %}
             {% endwith %}
-            <h1 style="display: flex; align-items: center; text-align: center;">
+            <h1 style="align-items: center; text-align: center;">
               Horario del día 
               <img src="{{ url_for('static', filename='images/cabeza.png') }}" alt="Tu Imagen" style="width: 160px; height: auto; margin-left: -28px;">
             </h1>      
@@ -49,7 +49,7 @@
                 <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                   <div class="d-flex w-100 justify-content-between">
                       <h5 class="mb-1">{{ item.SubjectName }}</h5>
-                      <small>{{ item.StartTime }} - {{ item.EndTime }}</small>
+                      <small class ="itemstart">{{ item.StartTime }} - {{ item.EndTime }}</small>
                   </div>
                   <p class="mb-1">Aula: {{ item.ClassroomNumber }}</p>
                   <small>Profesor: {{ item.TeacherName }}</small>
