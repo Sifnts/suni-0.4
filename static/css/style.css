@@ -6,29 +6,73 @@ h1 {
     color: #AE0C45;
     text-align: center;
     font-family: Manrope;
-    font-size: 5vw;
+    font-size: 4.3vw;
+    font-style: normal;
+    letter-spacing: -0.3vw;
+    font-weight: bolder;
+    margin-bottom: -0.1vw;
+
+}
+
+h2 {
+    color: #AE0C45;
+    text-align: center;
+    font-family: Manrope;
+    font-size: 2vw;
     font-style: normal;
     font-weight: bolder;
+    margin-top: 0.05vw;
 }
+
 
 h4 {
     color: #AE0C45;
     text-align: center;
     font-family: Manrope;
-    font-size: 4vw;
+    font-size: 3.2vw;
     font-style: normal;
     font-weight: bolder;
+    line-height: 87%;
+    margin-bottom: 5%;
+    margin-top: auto;
 }
 
+h5{
+    font-family: Manrope;
+    font-style: normal;
+    font-weight: bolder;
+    margin-top: 1%;
+}
+
+.itemstart{
+    text-align: center;
+    color: #AE0C45;
+    font-family: Manrope;
+    font-weight: bolder;
+    margin-top: 1%;
+    text-shadow: #00000050;
+}
+
+.list-group{
+    margin-bottom: 10%;
+    border-radius: 15px;
+    box-shadow: 20px 12px 24px 5px rgba(0, 0, 0, 0.15);
+    }
 
 * {
     font-family: Manrope, sans-serif; /* General font family for nice typography */
 }
 
+.nombre-prof{
+    margin-bottom: 5%;
+    margin-top: -0.5vw;
+}
+
 .slogan {
-    font-size: 1.2em; /* Slightly larger slogan for emphasis */
+    font-size: 1.5vw; /* Slightly larger slogan for emphasis */
     text-align: center; /* Center align slogan */
-    margin-bottom: 1em; /* Consistent bottom margin for spacing */
+    margin-bottom: 2.5vw; /* Consistent bottom margin for spacing */
+    margin-top: -0.5vw;
 }
 
 .slogan .today {
@@ -38,6 +82,40 @@ h4 {
     font-size: 1.2em;
     margin-bottom: 1em;
 }
+
+.login-form{
+    border-radius: 44px;
+    background: rgba(239, 239, 239, 0.199);
+    box-shadow: 20px 12px 24px 5px rgba(0, 0, 0, 0.15);
+    padding: auto;
+}
+
+.fondouno{
+    background-image: url('/static/images/UNE_edificio-1024x846.jpg'); 
+    background-size: cover;
+    background-position: center;
+}
+
+.background-image1 {
+    position: fixed;
+    top: -60;
+    right: 0;
+    width: 30%; 
+    height: auto;
+    object-fit: contain;
+    z-index: -8; 
+}
+
+.background-image2 {
+    position: fixed;
+    bottom: -5;
+    right: 0;
+    width: 30%; 
+    height: auto;
+    object-fit: contain;
+    z-index: -7; 
+}
+
 
 /* Removed fixed dimensions for .col as it may not be needed globally */
 .col {

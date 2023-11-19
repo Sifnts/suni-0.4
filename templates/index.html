@@ -9,6 +9,8 @@
         <title>SUNI Horario</title>
     </head>
     <body>
+      <img src="{{ url_for('static', filename='images/vectorrosa.png') }}" alt="Fondo1" class="background-image1" id="background-image1">
+      <img src="{{ url_for('static', filename='images/vectorazul.png') }}" alt="Fondo2" class="background-image2" id="background-image2">        
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
               <a class="navbar-brand" href="{{ url_for('index') }}">
@@ -41,8 +43,7 @@
             {% endwith %}
             <h1 style="align-items: center; text-align: center;">
               Horario del día 
-              <img src="{{ url_for('static', filename='images/cabeza.png') }}" alt="Tu Imagen" style="width: 160px; height: auto; margin-left: -28px;">
-            </h1>      
+              </h1>      
             <p class="slogan">Hoy es: <span class="today">{{ today }}</span></p>
             {% if schedule_items %}
             <div class="list-group">
@@ -50,15 +51,15 @@
                 <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                   <div class="d-flex w-100 justify-content-between">
                       <h5 class="mb-1">{{ item.SubjectName }}</h5>
-                      <small class ="itemstart">{{ item.StartTime }} - {{ item.EndTime }}</small>
+                      <small class ="itemstart">{{ item.StartTime }}:00 — {{ item.EndTime }}:00</small>
                   </div>
                   <p class="mb-1">Aula: {{ item.ClassroomNumber }}</p>
-                  <small>Profesor: {{ item.TeacherName }}</small>
+                  <small class="nombre-prof">Profesor: {{ item.TeacherName }}</small>
                 </a>
                 {% endfor %}
             </div>
             {% else %}
-            <p>No hay clases programadas para hoy.</p>
+            <div class="list-group mb-1 list-group-item">No hay clases programadas para hoy.</div>
             {% endif %}
         </div>
     </body>
