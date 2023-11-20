@@ -188,7 +188,7 @@ def admin_dashboard():
     return render_template('admin_dashboard.html', reservations=reservations, reports=reports)
 
 
-@app.route('/logout')
+@app.route('/logout', methods=['POST'])
 def logout():
     # Clear all data in the session
     session.clear()

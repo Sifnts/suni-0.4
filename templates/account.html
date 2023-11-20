@@ -59,8 +59,10 @@
                                 <input type="text" class="form-control" id="group" value="{{ group.GroupName }}" readonly>                            </div>
                             <!-- Logout button -->
                             <div class="d-grid gap-2">
-                                <button type="button" class="btn btn-danger" onclick="location.href='login.html'">Cerrar Sesión</button>
-                            </div>
+                                <form action="/logout" method="post">
+                                    <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
+                                </form>
+                            </div>                                                      
                         </div>
                     </div>
                 </div>
