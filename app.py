@@ -5,6 +5,7 @@ import sqlite3
 import locale
 from datetime import datetime  # Corrected import statement
 from datetime import timedelta
+import pytz
 
 # This is a test comment
 
@@ -60,7 +61,9 @@ def index():
     if not student_id:
         return redirect(url_for('login'))
 
-    today = datetime.now().strftime("%A").title()
+    # Your time zone (GMT-6)
+    timezone = pytz.timezone('Etc/GMT+6')
+    today = datetime.now(timezone).strftime("%A").title()
     print(f"Today's day in Spanish: {today}")  # Debug print
 
     conn = get_db_connection()
