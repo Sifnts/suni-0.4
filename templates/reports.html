@@ -31,10 +31,8 @@
             </div>
         </nav>
         <div class="container">
-            
                 <h1>Reportar un problema</h1>
                 <p class="slogan">Aquí puedes realizar reportes sobre incidencias que hayas observado en tus salones.</p>
-            
         </div>
         <div class="container my-4">
             <div class="row justify-content-center">
@@ -42,9 +40,6 @@
                     <div class="card-shadow">
                         <div class="card-body">
                             <form method="post" action="{{ url_for('reports') }}">
-                                <div class="card-header">
-                                    <h2>Reporte de problemas en salones</h2>
-                                </div>
                                 <div class="mb-3">
                                     <label for="classroom" class="form-label">Salón</label>
                                     <select class="form-select" id="classroom" name="classroom" required>
