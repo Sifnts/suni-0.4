@@ -61,16 +61,10 @@ def index():
     if not student_id:
         return redirect(url_for('login'))
 
-   # Your time zone (GMT-6)
+    # Your time zone (GMT-6)
     timezone = pytz.timezone('Etc/GMT+6')
-
-    # Find the next Wednesday from today
-    today_date = datetime.now(timezone)
-    days_until_wednesday = (2 - today_date.weekday() + 7) % 7  # 2 represents Wednesday
-    mock_wednesday = today_date + timedelta(days=days_until_wednesday)
-
-    # Set 'today' to the mocked Wednesday
-    today = mock_wednesday.strftime("%A").capitalize()
+    # Get current day in English
+    today = datetime.now(timezone).strftime("%A").capitalize()    # Translate to Spanish using the mapping
 
     print(f"Today's day in Spanish: {today}")  # Debug print
 
