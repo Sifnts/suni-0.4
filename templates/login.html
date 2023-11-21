@@ -15,6 +15,16 @@
                 <div class="login-form bg-light mt-4 p-4">
                     <form action="{{ url_for('login') }}" method="post" class="row g-3">
                         <h4>¡Bienvenido/a de vuelta!</h4>
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                        {{ message }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
                         <div class="col-12">
                             <label style="padding-bottom: 10px; font-weight: bold;">Matrícula Estudiantil</label>
                             <input type="text" name="student_id" class="form-control" placeholder="123456" required>

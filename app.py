@@ -49,7 +49,7 @@ def login():
             session['group_id'] = student['GroupID']
             return redirect(url_for('index'))
         else:
-            return 'Invalid student ID or password', 401
+            flash('Invalid admin ID or password', 'error')
     return render_template('login.html')
 
 # Homepage displaying the schedule
@@ -175,6 +175,20 @@ def admin_dashboard():
         flash('Please log in to access the admin dashboard.', 'warning')
         return redirect(url_for('admin_login'))
     
+    conn = get_db_connection()
+    admin_details = conn.execute('SELECT * FROM admins WHERE admin_id = ?', (session['admin_id'],)).fetchone()
+    conn.close()
+    
+    return render_template('admin_dashboard.html', admin=admin_details)
+
+@app.route('/admin_reservation')
+def admin_reservation():
+    # Check if 'admin_id' is in session and redirect if not
+    if 'admin_id' not in session:
+        # Redirect to the admin login page if 'admin_id' not in session
+        flash('Please log in to access the admin dashboard.', 'warning')
+        return redirect(url_for('admin_login'))
+    
     # Fetch all reservations and reports to display to the admin
     conn = get_db_connection()
     reservations = conn.execute('''
@@ -183,6 +197,19 @@ def admin_dashboard():
         JOIN groups g ON r.GroupID = g.GroupID
         JOIN classrooms c ON r.ClassroomID = c.ClassroomID
     ''').fetchall()
+    conn.close()
+    return render_template('admin_reservation.html', reservations=reservations)
+
+@app.route('/admin_reports')
+def admin_reports():
+    # Check if 'admin_id' is in session and redirect if not
+    if 'admin_id' not in session:
+        # Redirect to the admin login page if 'admin_id' not in session
+        flash('Please log in to access the admin dashboard.', 'warning')
+        return redirect(url_for('admin_login'))
+    
+    # Fetch all reservations and reports to display to the admin
+    conn = get_db_connection()
     reports = conn.execute('''
         SELECT ir.*, c.ClassroomNumber, s.FullName as ReportedBy
         FROM incident_reports ir
@@ -190,7 +217,7 @@ def admin_dashboard():
         JOIN students s ON ir.ReportedBy = s.StudentID
     ''').fetchall()
     conn.close()
-    return render_template('admin_dashboard.html', reservations=reservations, reports=reports)
+    return render_template('admin_reports.html', reports=reports)
 
 
 @app.route('/logout', methods=['POST'])
@@ -199,6 +226,13 @@ def logout():
     session.clear()
     flash('You have been logged out.', 'success')
     return redirect(url_for('login'))  # Redirect to login or home page
+
+@app.route('/admin_logout', methods=['POST'])
+def admin_logout():
+    # Clear all data in the session
+    session.clear()
+    flash('You have been logged out.', 'success')
+    return redirect(url_for('admin_login'))  # Redirect to login or home page
 
 
 
