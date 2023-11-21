@@ -43,11 +43,11 @@
                 <tbody>
                     {% for report in reports %}
                         <tr>
-                            <td>{{ report.IncidentReportID }}</td>
-                            <td>{{ report.ClassroomNumber }}</td> <!-- Changed to display classroom number -->
-                            <td>{{ report.ReportedBy }}</td> <!-- Now shows the full name -->
-                            <td>{{ report.IncidentDate }}</td>
-                            <td>{{ report.Description }}</td>
+                            <td>{{ report.incidentReportId }}</td>
+                            <td>{{ report.classroomNumber }}</td> <!-- Changed to display classroom number -->
+                            <td>{{ report.reportedBy }}</td> <!-- Now shows the full name -->
+                            <td>{{ report.incidentDate }}</td>
+                            <td>{{ report.description }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>

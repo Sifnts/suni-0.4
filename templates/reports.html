@@ -49,11 +49,9 @@
                                     <label for="classroom" class="form-label">Salón</label>
                                     <select class="form-select" id="classroom" name="classroom" required>
                                         <option value="">Seleccione un salón...</option>
-                                        <option value="1">5.1</option>
-                                        <option value="2">5.2</option>
-                                        <option value="3">5.3</option>
-                                        <option value="4">5.4</option>
-                                        <option value="5">Laboratorio de Ingenierías</option>
+                                        {% for classroom in classrooms %}
+                                        <option value="{{ classroom.classroomId }}">{{ classroom.classroomNumber }}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                                 <div class="mb-3">

@@ -38,18 +38,18 @@ def get_db_connection():
 @app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        student_id = request.form['student_id']
+        studentId = request.form['studentId']
         # password = request.form['password'] # If implementing password, uncomment this line
         conn = get_db_connection()
-        student = conn.execute('SELECT * FROM students WHERE StudentID = ?', (student_id,)).fetchone()
+        student = conn.execute('SELECT * FROM students WHERE studentId = ?', (studentId,)).fetchone()
         conn.close()
         # Replace the if condition below with a password check using check_password_hash if using passwords
         if student: # and check_password_hash(student['hashed_password'], password):
-            session['student_id'] = student_id
-            session['group_id'] = student['GroupID']
+            session['studentId'] = studentId
+            session['groupId'] = student['groupId']
             return redirect(url_for('index'))
         else:
-            flash('Invalid admin ID or password', 'error')
+            flash('Invalid admin ID or password', 'warning')
     return render_template('login.html')
 
 # Homepage displaying the schedule
@@ -57,8 +57,8 @@ def login():
 def index():
     # your existing code to fetch and display schedule can be moved here if this is the homepage.
     # assuming you want to show schedule on the home page, which is index.html in this context.
-    student_id = session.get('student_id')
-    if not student_id:
+    studentId = session.get('studentId')
+    if not studentId:
         return redirect(url_for('login'))
 
     # Your time zone (GMT-6)
@@ -71,14 +71,14 @@ def index():
     conn = get_db_connection()
     cur = conn.cursor()
     cur.execute('''
-        SELECT sch.*, sub.SubjectName, t.FullName AS TeacherName, c.ClassroomNumber
+        SELECT sch.*, sub.subjectName, t.fullName AS teacherName, c.classroomNumber
         FROM schedules sch
-        JOIN subjects sub ON sch.SubjectID = sub.SubjectID
-        JOIN teachers t ON sch.TeacherID = t.TeacherID
-        JOIN classrooms c ON sch.ClassroomID = c.ClassroomID
-        WHERE sch.GroupID = (SELECT GroupID FROM students WHERE StudentID = ?)
-        AND sch.DayOfWeek = ?
-    ''', (student_id, today))
+        JOIN subjects sub ON sch.subjectId = sub.subjectId
+        JOIN teachers t ON sch.teacherId = t.teacherId
+        JOIN classrooms c ON sch.classroomId = c.classroomId
+        WHERE sch.groupId = (SELECT groupId FROM students WHERE studentId = ?)
+        AND sch.dayOfWeek = ?
+    ''', (studentId, today))
     schedule_items = cur.fetchall()
     print(f"Fetched schedule items: {schedule_items}")  # Debug print
     conn.close()
@@ -89,19 +89,19 @@ def index():
 # Account Page
 @app.route('/account')
 def account():
-    if 'student_id' not in session:
+    if 'studentId' not in session:
         return redirect(url_for('login'))
     conn = get_db_connection()
-    student_details = conn.execute('SELECT * FROM students WHERE StudentID = ?', (session['student_id'],)).fetchone()
-    degree_details = conn.execute('SELECT DegreeName FROM degrees WHERE DegreeID = ?', (student_details['DegreeID'],)).fetchone()
-    group_details = conn.execute('SELECT GroupName, Period FROM groups WHERE GroupID = ?', (student_details['GroupID'],)).fetchone()
+    student_details = conn.execute('SELECT * FROM students WHERE studentId = ?', (session['studentId'],)).fetchone()
+    degree_details = conn.execute('SELECT degreeName FROM degrees WHERE degreeId = ?', (student_details['degreeId'],)).fetchone()
+    group_details = conn.execute('SELECT groupName, period FROM groups WHERE groupId = ?', (student_details['groupId'],)).fetchone()
     conn.close()
     return render_template('account.html', student=student_details, degree=degree_details, group=group_details)
 
     # Account Page
 @app.route('/map')
 def map():
-    if 'student_id' not in session:
+    if 'studentId' not in session:
         return redirect(url_for('login'))
     return render_template('map.html')
 
@@ -109,37 +109,41 @@ def map():
 # Reports Page
 @app.route('/reports', methods=['GET', 'POST'])
 def reports():
-    if 'student_id' not in session:
+    if 'studentId' not in session:
         return redirect(url_for('login'))
     if request.method == 'POST':
-        classroom_id = request.form['classroom']
-        incident_date = request.form['incidentDate']
+        classroomId = request.form['classroom']
+        incidentDate = request.form['incidentDate']
         description = request.form['description']
         conn = get_db_connection()
-        conn.execute('INSERT INTO incident_reports (ClassroomID, ReportedBy, IncidentDate, Description) VALUES (?, ?, ?, ?)',
-                     (classroom_id, session['student_id'], incident_date, description))
+        conn.execute('INSERT INTO incident_reports (classroomId, reportedBy, incidentDate, description) VALUES (?, ?, ?, ?)',
+                     (classroomId, session['studentId'], incidentDate, description))
         conn.commit()
         conn.close()
         flash('Tu reporte se ha enviado exitosamente.', 'success')  # Add a flash message here
         return redirect(url_for('index'))  # Or redirect to a 'success' page if you have one
-    return render_template('reports.html')
+    
+    conn = get_db_connection()
+    classrooms = conn.execute('SELECT * FROM classrooms').fetchall()
+    conn.close()
+    return render_template('reports.html', classrooms=classrooms)
 
 
 # Reservations Page
 @app.route('/reservation', methods=['GET', 'POST'])
 def reservation():
-    if 'student_id' not in session:
+    if 'studentId' not in session:
         return redirect(url_for('login'))
     if request.method == 'POST':
-        classroom_id = request.form['classroom']
+        classroomId = request.form['classroom']
         date = request.form['date']
-        start_time = request.form['startTime']
-        end_time = request.form['endTime']  # You will need to add an input for 'endTime' in the form
+        startTime = request.form['startTime']
+        endTime = request.form['endTime']  # You will need to add an input for 'endTime' in the form
         description = request.form['description']  # Make sure 'description' is for reservation purpose
-        group_id = session['group_id']
+
         conn = get_db_connection()
-        conn.execute('INSERT INTO reservations (ClassroomID, GroupID, StartTime, EndTime, Date) VALUES (?, ?, ?, ?, ?)',
-                     (classroom_id, group_id, start_time, end_time, date))
+        conn.execute('INSERT INTO reservations (classroomId, startTime, endTime, date, requestedBy, description) VALUES (?, ?, ?, ?, ?, ?)',
+                     (classroomId, startTime, endTime, date, session['studentId'], description))
         conn.commit()
         conn.close()
         flash('Tu reservación se ha enviado exitosamente.', 'success')  # Add a flash message here
@@ -163,7 +167,7 @@ def admin_login():
             session['admin_id'] = admin_id
             return redirect(url_for('admin_dashboard'))
         else:
-            flash('Invalid admin ID or password', 'error')
+            flash('Invalid admin ID or password', 'warning')
     return render_template('admin_login.html')
 
 
@@ -192,10 +196,9 @@ def admin_reservation():
     # Fetch all reservations and reports to display to the admin
     conn = get_db_connection()
     reservations = conn.execute('''
-        SELECT r.*, g.GroupName, c.ClassroomNumber
+        SELECT r.*, c.classroomNumber
         FROM reservations r
-        JOIN groups g ON r.GroupID = g.GroupID
-        JOIN classrooms c ON r.ClassroomID = c.ClassroomID
+        JOIN classrooms c ON r.classroomID = c.classroomId
     ''').fetchall()
     conn.close()
     return render_template('admin_reservation.html', reservations=reservations)
@@ -211,10 +214,10 @@ def admin_reports():
     # Fetch all reservations and reports to display to the admin
     conn = get_db_connection()
     reports = conn.execute('''
-        SELECT ir.*, c.ClassroomNumber, s.FullName as ReportedBy
+        SELECT ir.*, c.classroomNumber, s.fullName as reportedBy
         FROM incident_reports ir
-        JOIN classrooms c ON ir.ClassroomID = c.ClassroomID
-        JOIN students s ON ir.ReportedBy = s.StudentID
+        JOIN classrooms c ON ir.classroomId = c.classroomId
+        JOIN students s ON ir.reportedBy = s.studentID
     ''').fetchall()
     conn.close()
     return render_template('admin_reports.html', reports=reports)

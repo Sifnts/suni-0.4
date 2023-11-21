@@ -35,21 +35,23 @@
                     <tr>
                         <th>Reservation ID</th>
                         <th>Classroom Name</th>
-                        <th>Group Name</th>
                         <th>Start Time</th>
                         <th>End Time</th>
                         <th>Date</th>
+                        <th>Requested By</th>
+                        <th>Description</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for reservation in reservations %}
                         <tr>
-                            <td>{{ reservation.ReservationID }}</td>
-                            <td>{{ reservation.ClassroomNumber }}</td> <!-- Changed to display classroom number -->
-                            <td>{{ reservation.GroupName }}</td> <!-- Changed to display group name -->
-                            <td>{{ reservation.StartTime }}</td>
-                            <td>{{ reservation.EndTime }}</td>
-                            <td>{{ reservation.Date }}</td>
+                            <td>{{ reservation.reservationId }}</td>
+                            <td>{{ reservation.classroomNumber }}</td> <!-- Changed to display classroom number -->
+                            <td>{{ reservation.startTime }}</td>
+                            <td>{{ reservation.endTime }}</td>
+                            <td>{{ reservation.date }}</td>
+                            <td>{{ reservation.requestedBy }}</td>
+                            <td>{{ reservation.description }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>

@@ -47,16 +47,16 @@
                             <!-- Displaying user information with readonly inputs -->
                             <div class="mb-3">
                                 <label for="fullName" class="form-label">Nombre Completo</label>
-                                <input type="text" class="form-control" id="fullName" value="{{ student.FullName }}" readonly>                            </div>
+                                <input type="text" class="form-control" id="fullName" value="{{ student.fullName }}" readonly>                            </div>
                             <div class="mb-3">
                                 <label for="major" class="form-label">Carrera</label>
-                                <input type="text" class="form-control" id="major" value="{{ degree.DegreeName }}" readonly>                            </div>
+                                <input type="text" class="form-control" id="major" value="{{ degree.degreeName }}" readonly>                            </div>
                             <div class="mb-3">
                                 <label for="semester" class="form-label">Cuatrimestre</label>
-                                <input type="text" class="form-control" id="semester" value="{{ group.Period }}" readonly>                            </div>
+                                <input type="text" class="form-control" id="semester" value="{{ group.period }}" readonly>                            </div>
                             <div class="mb-3">
                                 <label for="group" class="form-label">Grupo</label>
-                                <input type="text" class="form-control" id="group" value="{{ group.GroupName }}" readonly>                            </div>
+                                <input type="text" class="form-control" id="group" value="{{ group.groupName }}" readonly>                            </div>
                             <!-- Logout button -->
                             <div class="d-grid gap-2">
                                 <form action="/logout" method="post">
