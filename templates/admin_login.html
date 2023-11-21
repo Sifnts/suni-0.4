@@ -13,6 +13,7 @@
             <div class="col-md-6 offset-md-3">
                 <div class="login-form bg-light mt-4 p-4">
                     <form action="{{ url_for('admin_login') }}" method="post" class="row g-3">
+                        <img src="{{ url_for('static', filename='images/suni.png') }}" alt="SUNI Logo" style="width: 10vw; height: auto; display: block; margin-left: auto; margin-right: auto; margin-bottom: -1vw;">
                         <h4>Admin Login</h4>
                         {% with messages = get_flashed_messages(with_categories=true) %}
                             {% if messages %}
