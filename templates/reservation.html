@@ -49,7 +49,7 @@
                                     <select class="form-select" id="classroom" name="classroom" required>
                                         <option value="">Seleccione un salón...</option>
                                         {% for classroom in classrooms %}
-                                        <option value="{{ classroom.ClassroomID }}">{{ classroom.ClassroomNumber }}</option>
+                                        <option value="{{ classroom.classroomId }}">{{ classroom.classroomNumber }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
