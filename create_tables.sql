@@ -71,12 +71,15 @@ CREATE TABLE IF NOT EXISTS reservations (
 );
 
 -- Create Incident Reports Table
-CREATE TABLE IF NOT EXISTS incident_reports (
+CREATE TABLE incident_reports (
     incidentReportId INTEGER PRIMARY KEY AUTOINCREMENT,
     classroomId INTEGER NOT NULL,
     reportedBy TEXT NOT NULL,
     incidentDate TEXT NOT NULL,
-    description TEXT NOT NULL,
+    description TEXT NOT NULL, 
+    isAddressed BOOLEAN DEFAULT FALSE, 
+    completionDate TEXT, 
+    user_notified BOOLEAN DEFAULT FALSE,
     FOREIGN KEY(classroomId) REFERENCES classrooms(classroomId),
     FOREIGN KEY(reportedBy) REFERENCES students(studentId)
 );

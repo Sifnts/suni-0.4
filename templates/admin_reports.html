@@ -29,32 +29,50 @@
         </div>
     </nav>
     <div class="container"> 
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         <h1 class="my-4">Admin Reports</h1>
-        <section>
-            <h2>Reports</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Report ID</th>
-                        <th>Classroom Name</th>
-                        <th>Reported By</th>
-                        <th>Incident Date</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for report in reports %}
+        <form method="post" action="{{ url_for('update_report_status') }}"> <!-- Ruta a definir en app.py -->
+            <section>
+                <h2>Reports</h2>
+                <table class="table">
+                    <thead>
                         <tr>
-                            <td>{{ report.incidentReportId }}</td>
-                            <td>{{ report.classroomNumber }}</td> <!-- Changed to display classroom number -->
-                            <td>{{ report.reportedBy }}</td> <!-- Now shows the full name -->
-                            <td>{{ report.incidentDate }}</td>
-                            <td>{{ report.description }}</td>
+                            <th>Report ID</th>
+                            <th>Classroom Name</th>
+                            <th>Reported By</th>
+                            <th>Incident Date</th>
+                            <th>Description</th>
+                            <th>Status</th> <!-- Columna nueva para el estado -->
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </section>
+                    </thead>
+                    <tbody>
+                        {% for report in reports %}
+                            <tr>
+                                <td>{{ report.incidentReportId }}</td>
+                                <td>{{ report.classroomNumber }}</td>
+                                <td>{{ report.reportedBy }}</td>
+                                <td>{{ report.incidentDate }}</td>
+                                <td>{{ report.description }}</td>
+                                <td>
+                                    <input type="checkbox" name="report_status_{{ report.incidentReportId }}" value="addressed" 
+                                           {% if report.isAddressed %} checked disabled {% endif %}>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <button type="submit" class="btn btn-primary">Actualizar Estado</button>
+            </section>
+        </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

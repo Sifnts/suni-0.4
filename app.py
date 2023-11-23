@@ -106,7 +106,6 @@ def map():
     return render_template('map.html')
 
 
-# Reports Page
 @app.route('/reports', methods=['GET', 'POST'])
 def reports():
     if 'studentId' not in session:
@@ -120,13 +119,39 @@ def reports():
                      (classroomId, session['studentId'], incidentDate, description))
         conn.commit()
         conn.close()
-        flash('Tu reporte se ha enviado exitosamente.', 'success')  # Add a flash message here
-        return redirect(url_for('index'))  # Or redirect to a 'success' page if you have one
+        flash('Tu reporte se ha enviado exitosamente.', 'success')
+        return redirect(url_for('index'))
     
     conn = get_db_connection()
+    query = """
+        SELECT incident_reports.*, classrooms.classroomNumber
+        FROM incident_reports
+        JOIN classrooms ON incident_reports.classroomId = classrooms.classroomId
+        WHERE reportedBy = ?
+    """
+    existing_reports = conn.execute(query, (session['studentId'],)).fetchall()
     classrooms = conn.execute('SELECT * FROM classrooms').fetchall()
+    
+    # Obtener reportes resueltos que aún no han notificado al usuario
+    unresolved_reports = conn.execute("""
+        SELECT * FROM incident_reports
+        WHERE reportedBy = ? AND isAddressed = TRUE AND user_notified = FALSE
+    """, (session['studentId'],)).fetchall()
+
+    # Determinar si mostrar la notificación
+    show_notification = len(unresolved_reports) > 0
+
+    # Marcar los reportes como notificados
+    if show_notification:
+        for report in unresolved_reports:
+            conn.execute("UPDATE incident_reports SET user_notified = TRUE WHERE incidentReportId = ?", (report['incidentReportId'],))
+        conn.commit()
+
+    # Obtener todos los reportes para mostrar en la página
+    existing_reports = conn.execute(query, (session['studentId'],)).fetchall()
+    
     conn.close()
-    return render_template('reports.html', classrooms=classrooms)
+    return render_template('reports.html', classrooms=classrooms, reports=existing_reports, has_resolved_reports=show_notification)
 
 
 # Reservations Page
@@ -221,6 +246,28 @@ def admin_reports():
     ''').fetchall()
     conn.close()
     return render_template('admin_reports.html', reports=reports)
+
+
+@app.route('/update_report_status', methods=['POST'])
+def update_report_status():
+    # Verificar si el usuario es administrador
+    if 'admin_id' not in session:
+        flash('Acceso no autorizado.', 'warning')
+        return redirect(url_for('admin_login'))
+
+    # Procesar los IDs de reportes marcados como resueltos
+    conn = get_db_connection()
+    for key in request.form:
+        if key.startswith('report_status_'):
+            report_id = key.split('_')[-1]
+            # Aquí podrías también añadir la lógica para registrar la fecha de resolución
+            conn.execute('UPDATE incident_reports SET isAddressed = ? WHERE incidentReportId = ?', 
+                         (True, report_id))
+            conn.commit()
+    conn.close()
+
+    flash('Estado de los reportes actualizado.', 'success')
+    return redirect(url_for('admin_reports'))
 
 
 @app.route('/logout', methods=['POST'])

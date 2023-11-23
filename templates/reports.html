@@ -30,8 +30,14 @@
             </div>
         </nav>
         <div class="container">
-                <h1>Reportar un problema</h1>
-                <p class="slogan">Aquí puedes realizar reportes sobre incidencias que hayas observado en tus salones.</p>
+            {% if has_resolved_reports %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Uno o más de tus reportes han sido resueltos recientemente.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endif %}
+            <h1>Reportar un problema</h1>
+            <p class="slogan">Aquí puedes realizar reportes sobre incidencias que hayas observado en tus salones.</p>
         </div>
         <div class="container my-4">
             <div class="row justify-content-center">
@@ -61,6 +67,28 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="container my-4">
+            <h2>Reportes Anteriores</h2>
+            <div class="row">
+                {% for report in reports %}
+                    <div class="col-12 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Reporte #{{ report.incidentReportId }}</h5>
+                                <p class="card-text"><strong>Salón:</strong> {{ report.classroomNumber }}</p>
+                                <p class="card-text"><strong>Fecha de Incidencia:</strong> {{ report.incidentDate }}</p>
+                                <p class="card-text"><strong>Descripción:</strong> {{ report.description }}</p>
+                                <p class="card-text"><strong>Estado:</strong> {% if report.isAddressed %} Resuelto {% else %} Pendiente {% endif %}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="col-12">
+                        <p>No hay reportes anteriores.</p>
+                    </div>
+                {% endfor %}
             </div>
         </div>
         <img src="{{ url_for('static', filename='images/cabsuni.png') }}" alt="cabeza" class="jaguarhead" id="jaguarhead">        
