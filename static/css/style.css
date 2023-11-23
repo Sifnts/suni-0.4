@@ -50,6 +50,20 @@ h5{
     margin-top: 1%;
 }
 
+h6 {
+    color: #AE0C45;
+    text-align: center;
+    font-family: Manrope;
+    font-size: 3.2vw;
+    font-style: normal;
+    font-weight: bolder;
+    line-height: 87%;
+    margin-bottom: 5%;
+    margin-top: auto;
+    letter-spacing: -0.2vw;
+}
+
+
 * {
     font-family: Manrope, sans-serif; /* General font family for nice typography */
 }
@@ -66,7 +80,7 @@ h5{
 
 .background-image2 {
     position: fixed;
-    bottom: -5;
+    bottom: -2%;
     right: 0;
     width: 30%; 
     height: auto;
@@ -105,6 +119,16 @@ h5{
     color: #AE0C45;
     margin-top: 1%;
     text-shadow: #00000050;
+}
+
+.jagu{
+    position: fixed;
+    bottom: 9%;
+    left: 1%;
+    width: 40%; 
+    height: auto;
+    object-fit: fill;
+    z-index: -7;     
 }
 
 .jaguarhead{
@@ -151,8 +175,8 @@ h5{
     color: #AE0C45;
     text-align: center;
     font-family: Manrope;
-    font-size: 1.2em;
-    margin-bottom: 1em;
+    font-size: 1.55vw;
+    margin-bottom: 1vw;
 }
 
 /* Ensure image dimensions are only controlled where needed, not globally to avoid conflicts */
@@ -200,10 +224,13 @@ img {
     top: 0; /* Align the navbar at the very top of the viewport */
     width: 100%; /* Make the navbar span the full width of the viewport */
     z-index: 1000; /* Ensure the navbar stays on top of other content */
+    font-family: Manrope;
+    font-weight: normal;    
 }
 
 .navbar-nav .nav-link {
     font-size: 1rem; /* Adjust the font size for nav links */
+    padding: 0.5rem 1rem; /* Reduce the padding */
 }
 
 /* Adjustments to the card and form styles for better alignment and spacing */

@@ -9,13 +9,14 @@
     <title>SUNI Login</title>
 </head>
 <body class= "fondouno">
+    <img src="{{ url_for('static', filename='images/jag.png') }}" alt="jaguar" class="jagu" id="jagu">
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <div class="login-form bg-light mt-4 p-4">
                     <form action="{{ url_for('login') }}" method="post" class="row g-3">
-                        <img src="{{ url_for('static', filename='images/suni.png') }}" alt="SUNI Logo" style="width: 10vw; height: auto; display: block; margin-left: auto; margin-right: auto;">
-                        <h4>¡Bienvenido/a de vuelta!</h4>
+                        <img src="{{ url_for('static', filename='images/suni.png') }}" alt="SUNI Logo" style="width: auto; height: 2.5vw; display: block; margin-left: auto; margin-right: auto;">
+                        <h6>¡Bienvenido/a de  vuelta!</h6>
                         {% with messages = get_flashed_messages(with_categories=true) %}
                             {% if messages %}
                                 {% for category, message in messages %}
