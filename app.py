@@ -80,11 +80,17 @@ def index():
         AND sch.dayOfWeek = ?
     ''', (studentId, today))
     schedule_items = cur.fetchall()
+
+     # Fetch the student's full name
+    cur.execute('SELECT fullName FROM students WHERE studentId = ?', (studentId,))
+    student = cur.fetchone()
+    first_name = student['fullName'].split()[2] if student and len(student['fullName'].split()) >= 3 else 'Estudiante'
     print(f"Fetched schedule items: {schedule_items}")  # Debug print
     conn.close()
 
     # Make sure to pass 'schedule_items' with the same name used in the template
-    return render_template('index.html', schedule_items=schedule_items, today=today)
+    return render_template('index.html', schedule_items=schedule_items, today=today, first_name=first_name)
+
 
 # Account Page
 @app.route('/account')
