@@ -100,14 +100,19 @@ h6 {
     box-shadow: 20px 12px 24px 5px rgba(0, 0, 0, 0.15);
 }
 
-/* Removed fixed dimensions for .col as it may not be needed globally */
 .col {
     align-items: center; /* Center items vertically if using Flexbox */
 }
 
+.container-4{
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;  
+}
+
 .fondouno{
-    background-image: url('/static/images/UNE_edificio-1024x846.jpg'); 
-    background-size:cover;
+    background-image: url('/static/images/5.jpeg'); 
+    background-size: 100%;
     background-position: center;
 }
 
@@ -135,7 +140,7 @@ h6 {
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 30%; 
+    width: 32%; 
     height: auto;
     object-fit: contain;
     z-index: -7;     
