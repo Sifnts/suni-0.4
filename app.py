@@ -288,25 +288,38 @@ def admin_reports():
     return render_template('admin_reports.html', reports=reports)
 
 
+@app.route('/add_comment/<int:report_id>', methods=['POST'])
+def add_comment(report_id):
+    if 'admin_id' not in session:
+        return redirect(url_for('admin_login'))
+
+    admin_comment = request.form['admin_comment']
+    conn = get_db_connection()
+    conn.execute('UPDATE incident_reports SET admin_comment = ? WHERE incidentReportId = ?', (admin_comment, report_id))
+    conn.commit()
+    conn.close()
+
+    flash('Comentario guardado.', 'success')
+    return redirect(url_for('admin_reports'))
+
+
 @app.route('/update_report_status', methods=['POST'])
 def update_report_status():
-    # Verificar si el usuario es administrador
     if 'admin_id' not in session:
         flash('Acceso no autorizado.', 'warning')
         return redirect(url_for('admin_login'))
 
-    # Procesar los IDs de reportes marcados como resueltos
     conn = get_db_connection()
-    for key in request.form:
+    for key, value in request.form.items():
         if key.startswith('report_status_'):
             report_id = key.split('_')[-1]
-            # Aquí podrías también añadir la lógica para registrar la fecha de resolución
-            conn.execute('UPDATE incident_reports SET isAddressed = ? WHERE incidentReportId = ?', 
-                         (True, report_id))
-            conn.commit()
+            is_addressed = value == 'addressed'
+            admin_comment = request.form.get(f'admin_comment_{report_id}', '')
+            conn.execute('UPDATE incident_reports SET isAddressed = ?, admin_comment = ? WHERE incidentReportId = ?', (is_addressed, admin_comment, report_id))
+    conn.commit()
     conn.close()
 
-    flash('Estado de los reportes actualizado.', 'success')
+    flash('Estado de los reportes y comentarios actualizados.', 'success')
     return redirect(url_for('admin_reports'))
 
 
@@ -323,7 +336,6 @@ def admin_logout():
     session.clear()
     flash('You have been logged out.', 'success')
     return redirect(url_for('admin_login'))  # Redirect to login or home page
-
 
 
 # Main block to run the app

@@ -80,7 +80,8 @@ CREATE TABLE incident_reports (
     description TEXT NOT NULL, 
     isAddressed BOOLEAN DEFAULT FALSE, 
     completionDate TEXT, 
-    user_notified BOOLEAN DEFAULT FALSE,
+    user_notified BOOLEAN DEFAULT FALSE, 
+    admin_comment TEXT,
     FOREIGN KEY(classroomId) REFERENCES classrooms(classroomId),
     FOREIGN KEY(reportedBy) REFERENCES students(studentId)
 );

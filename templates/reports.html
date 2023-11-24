@@ -84,7 +84,8 @@
                                 <strong>Salón:</strong> {{ report.classroomNumber }}<br>
                                 <strong>Fecha de Incidencia:</strong> {{ report.incidentDate }}<br>
                                 <strong>Descripción:</strong> {{ report.description }}<br>
-                                <strong>Estado:</strong> {% if report.isAddressed %} Resuelto {% else %} Pendiente {% endif %}
+                                <strong>Estado:</strong> {% if report.isAddressed %} Resuelto {% else %} Pendiente {% endif %}<br>
+                                <strong>Comentario del Administrador:</strong> {{ report.admin_comment | default('No hay comentarios aún.') }}
                             </div>
                         </div>
                     </div>
