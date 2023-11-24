@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Manrope';
-    src: url('static/fonts/Manrope-VariableFont_wght.ttf') format('truetype');
+    src: url('../fonts/Manrope-VariableFont_wght.ttf') format('truetype');
 }
 
 .container {
@@ -14,7 +14,7 @@ body {
 h1 {
     color: #AE0C45;
     text-align: center;
-    font-family: 'Manrope';
+    font-family: 'Manrope', sans-serif;
     font-size: 4.3vw;
     font-style: normal;
     letter-spacing: -0.3vw;
@@ -26,7 +26,7 @@ h1 {
 h2 {
     color: #AE0C45;
     text-align: center;
-    font-family: 'Manrope';
+    font-family: 'Manrope', sans-serif;
     font-size: 2vw;
     font-style: normal;
     font-weight: bolder;
