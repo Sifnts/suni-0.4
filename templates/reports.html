@@ -75,7 +75,7 @@
                 {% for report in reports %}
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading{{ report.incidentReportId }}">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ report.incidentReportId }}" aria-expanded="false" aria-controls="collapse{{ report.incidentReportId }}">
+                            <button class="accordion-button collapsed {% if report.isAddressed %} resuelto-bg {% else %} pendiente-bg {% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ report.incidentReportId }}" aria-expanded="false" aria-controls="collapse{{ report.incidentReportId }}">
                                 Reporte #{{ report.incidentReportId }}
                             </button>
                         </h2>
@@ -96,7 +96,7 @@
                     </div>
                 {% endfor %}
             </div>
-        </div>
+        </div>        
         <img src="{{ url_for('static', filename='images/cabsuni.png') }}" alt="cabeza" class="jaguarhead" id="jaguarhead">        
     </body>
 </html>

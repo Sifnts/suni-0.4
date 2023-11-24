@@ -295,3 +295,11 @@ img {
     h1 { font-size: 8vw; }
     h4 { font-size: 7vw; }
 }
+
+.resuelto-bg {
+    background-color: #90ee90; /* Un verde más claro */
+}
+
+.pendiente-bg {
+    background-color: #ffff99; /* Un amarillo más claro */
+}
