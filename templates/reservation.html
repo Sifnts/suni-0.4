@@ -72,6 +72,37 @@
                 </div>
             </div>
         </div>
+        <div class="container my-4">
+            <h2>Mis Reservaciones Pasadas</h2>
+            <div class="accordion" id="accordionReservations">
+                {% for reservation in past_reservations %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{ reservation.reservationId }}">
+                            <button class="accordion-button collapsed {% if reservation.isApproved %} resuelto-bg {% else %} pendiente-bg {% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ reservation.reservationId }}" aria-expanded="false" aria-controls="collapse{{ reservation.reservationId }}">
+                                Reservación #{{ reservation.reservationId }}
+                            </button>
+                        </h2>
+                        <div id="collapse{{ reservation.reservationId }}" class="accordion-collapse collapse" aria-labelledby="heading{{ reservation.reservationId }}" data-bs-parent="#accordionReservations">
+                            <div class="accordion-body">
+                                <strong>Salón:</strong> {{ reservation.classroomNumber }}<br>
+                                <strong>Fecha:</strong> {{ reservation.date }}<br>
+                                <strong>Hora de Inicio:</strong> {{ reservation.startTime }}<br>
+                                <strong>Hora de Fin:</strong> {{ reservation.endTime }}<br>
+                                <strong>Descripción:</strong> {{ reservation.description }}<br>
+                                <strong>Estado:</strong> {% if reservation.isApproved %} Aprobado {% else %} Pendiente {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="card">
+                        <div class="card-body">
+                            No hay reservaciones pasadas.
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        
         <img src="{{ url_for('static', filename='images/cabsuni.png') }}" alt="cabeza" class="jaguarhead" id="jaguarhead">        
     </body>
 </html>

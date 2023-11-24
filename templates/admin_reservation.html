@@ -28,47 +28,72 @@
           </div>
         </div>
     </nav>
+    <div class="container mt-3">
+        <!-- Sección para Mensajes Flash -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
     <div class="container my-4">
         <h1 class="my-4">Admin Reservations</h1>
-        <section>
-            <h2>Reservations</h2>
-            <div class="container my-4">
-                <div class="row justify-content-center">
-                    <div class="col-sm-12 col-md-10">
-                        <div class="card-shadow">
-                            <div class="card-body">    
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Reservation ID</th>
-                        <th>Classroom Name</th>
-                        <th>Start Time</th>
-                        <th>End Time</th>
-                        <th>Date</th>
-                        <th>Requested By</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for reservation in reservations %}
-                        <tr>
-                            <td>{{ reservation.reservationId }}</td>
-                            <td>{{ reservation.classroomNumber }}</td> <!-- Changed to display classroom number -->
-                            <td>{{ reservation.startTime }}</td>
-                            <td>{{ reservation.endTime }}</td>
-                            <td>{{ reservation.date }}</td>
-                            <td>{{ reservation.requestedBy }}</td>
-                            <td>{{ reservation.description }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+        <form method="post" action="{{ url_for('update_reservation_status') }}">
+            <section>
+                <h2>Reservations</h2>
+                <div class="container my-4">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-12 col-md-10">
+                            <div class="card-shadow">
+                                <div class="card-body">        
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Reservation ID</th>
+                                                <th>Classroom Name</th>
+                                                <th>Start Time</th>
+                                                <th>End Time</th>
+                                                <th>Date</th>
+                                                <th>Requested By</th>
+                                                <th>Description</th>
+                                                <th>Status</th> <!-- Columna nueva para el estado -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for reservation in reservations %}
+                                            <tr>
+                                                <td>{{ reservation.reservationId }}</td>
+                                                <td>{{ reservation.classroomNumber }}</td>
+                                                <td>{{ reservation.startTime }}</td>
+                                                <td>{{ reservation.endTime }}</td>
+                                                <td>{{ reservation.date }}</td>
+                                                <td>{{ reservation.requestedBy }}</td>
+                                                <td>{{ reservation.description }}</td>
+                                                <td>
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" name="reservation_status_{{ reservation.reservationId }}" value="approved" 
+                                                            {% if reservation.isApproved %} checked disabled {% endif %}>
+                                                        <label class="form-check-label">Approved</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    <button type="submit" class="btn btn-primary ms-auto">Actualizar Estado</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <img src="{{ url_for('static', filename='images/cabsuni2.png') }}" alt="cabeza" class="jaguarhead" id="jaguarhead">        

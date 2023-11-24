@@ -58,14 +58,15 @@ CREATE TABLE IF NOT EXISTS schedules (
 );
 
 -- Create Reservations Table
-CREATE TABLE IF NOT EXISTS reservations (
+CREATE TABLE reservations (
     reservationId INTEGER PRIMARY KEY AUTOINCREMENT,
     classroomId INTEGER NOT NULL,
     startTime TEXT NOT NULL,
     endTime TEXT NOT NULL,
     date TEXT NOT NULL,
     requestedBy TEXT NOT NULL,
-    description TEXT NOT NULL,
+    description TEXT NOT NULL, 
+    isApproved BOOLEAN DEFAULT FALSE,
     FOREIGN KEY(classroomId) REFERENCES classrooms(classroomId),
     FOREIGN KEY(requestedBy) REFERENCES students(studentId)
 );

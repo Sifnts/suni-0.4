@@ -165,6 +165,18 @@ def reports():
 def reservation():
     if 'studentId' not in session:
         return redirect(url_for('login'))
+    
+    # Fetch past reservations
+    conn = get_db_connection()
+    past_reservations = conn.execute('''
+        SELECT r.*, c.classroomNumber
+        FROM reservations r
+        JOIN classrooms c ON r.classroomId = c.classroomId
+        WHERE r.requestedBy = ?
+        ORDER BY r.date DESC
+    ''', (session['studentId'],)).fetchall()
+    conn.close()
+
     if request.method == 'POST':
         classroomId = request.form['classroom']
         date = request.form['date']
@@ -179,11 +191,12 @@ def reservation():
         conn.close()
         flash('Tu reservación se ha enviado exitosamente.', 'success')  # Add a flash message here
         return redirect(url_for('index'))  # Or redirect to a 'success' page if you have one
+    
     # Fetch available classrooms for selection in the form
     conn = get_db_connection()
     classrooms = conn.execute('SELECT * FROM classrooms').fetchall()
     conn.close()
-    return render_template('reservation.html', classrooms=classrooms)
+    return render_template('reservation.html', classrooms=classrooms, past_reservations=past_reservations)
 
 
 @app.route('/admin_login', methods=['GET', 'POST'])
@@ -233,6 +246,27 @@ def admin_reservation():
     ''').fetchall()
     conn.close()
     return render_template('admin_reservation.html', reservations=reservations)
+
+
+@app.route('/update_reservation_status', methods=['POST'])
+def update_reservation_status():
+    if 'admin_id' not in session:
+        return redirect(url_for('admin_login'))
+
+    conn = get_db_connection()
+    for key, value in request.form.items():
+        if key.startswith('reservation_status_'):
+            reservation_id = key.split('_')[-1]
+            is_approved = value == 'approved'
+            conn.execute('UPDATE reservations SET isApproved = ? WHERE reservationId = ?', (is_approved, reservation_id))
+    conn.commit()
+    conn.close()
+
+    flash('Estado de las reservaciones actualizado', 'success')
+    return redirect(url_for('admin_reservation'))
+
+
+
 
 @app.route('/admin_reports')
 def admin_reports():

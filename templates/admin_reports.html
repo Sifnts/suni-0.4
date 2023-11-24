@@ -40,51 +40,54 @@
             {% endif %}
         {% endwith %}
         <h1 class="my-4">Admin Reports</h1>
-        <form method="post" action="{{ url_for('update_report_status') }}">
+        <form method="post" action="{{ url_for('update_reservation_status') }}">
             <section>
-                <h2>Reports</h2>
+                <h2>Reservations</h2>
                 <div class="container my-4">
                     <div class="row justify-content-center">
                         <div class="col-sm-12 col-md-10">
                             <div class="card-shadow">
                                 <div class="card-body">        
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Report ID</th>
-                            <th>Classroom Name</th>
-                            <th>Reported By</th>
-                            <th>Incident Date</th>
-                            <th>Description</th>
-                            <th>Status</th> <!-- Columna nueva para el estado -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for report in reports %}
-                        <tr>
-                            <td>{{ report.incidentReportId }}</td>
-                            <td>{{ report.classroomNumber }}</td>
-                            <td>{{ report.reportedBy }}</td>
-                            <td>{{ report.incidentDate }}</td>
-                            <td>{{ report.description }}</td>
-                            <td>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" name="report_status_{{ report.incidentReportId }}" value="addressed" 
-                                           {% if report.isAddressed %} checked disabled {% endif %}>
-                                    <label class="form-check-label">Addressed</label>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Reservation ID</th>
+                                                <th>Classroom Name</th>
+                                                <th>Start Time</th>
+                                                <th>End Time</th>
+                                                <th>Date</th>
+                                                <th>Requested By</th>
+                                                <th>Description</th>
+                                                <th>Status</th> <!-- Columna nueva para el estado -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for reservation in reservations %}
+                                            <tr>
+                                                <td>{{ reservation.reservationId }}</td>
+                                                <td>{{ reservation.classroomNumber }}</td>
+                                                <td>{{ reservation.startTime }}</td>
+                                                <td>{{ reservation.endTime }}</td>
+                                                <td>{{ reservation.date }}</td>
+                                                <td>{{ reservation.requestedBy }}</td>
+                                                <td>{{ reservation.description }}</td>
+                                                <td>
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" name="reservation_status_{{ reservation.reservationId }}" value="approved" 
+                                                            {% if reservation.isApproved %} checked disabled {% endif %}>
+                                                        <label class="form-check-label">Approved</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    <button type="submit" class="btn btn-primary ms-auto">Actualizar Estado</button>
                                 </div>
-                            </td>
-                        </tr>
-                     {% endfor %}
-                    </tbody>
-                </table>
-                <button type="submit" class="btn btn-primary ms-auto">Actualizar Estado</button>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-                
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
         </form>
     </div>
