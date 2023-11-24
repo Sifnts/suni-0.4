@@ -58,6 +58,11 @@ h2 {
     margin-bottom: -0.6vw;    
 }
 
+.infoc{
+    margin-top: 1vw;
+    margin-bottom: 1.1vw;
+    background-color: rgb(255, 255, 255);
+}
 
 h4 {
     color: #AE0C45;
@@ -118,7 +123,7 @@ h6 {
 }
 
 .card-header{
-        margin-top: 1vw;
+        margin-top: 3vw;
         background-color: rgb(255, 255, 255);
 }
 
@@ -213,6 +218,25 @@ h6 {
     margin-bottom: 1vw;
 }
 
+.repant{
+    color: #AE0C45;
+    text-align: center;
+    font-family: 'Manrope', sans-serif;
+    font-size: 2vw;
+    font-style: normal;
+    font-weight: bolder;
+    margin-top: 0.05vw;
+    letter-spacing: -0.1vw;
+    margin-bottom: 1vw;
+}
+
+.reportn{
+    font-family: Manrope;
+    font-weight: bolder;
+    font-size: large;
+    text-align: center;
+}
+
 /* Ensure image dimensions are only controlled where needed, not globally to avoid conflicts */
 img {
     max-width: 100%; /* Make images responsive */
@@ -297,9 +321,9 @@ img {
 }
 
 .resuelto-bg {
-    background-color: #90ee90; /* Un verde más claro */
+    background-color: #bce2bc; /* Un verde más claro */
 }
 
 .pendiente-bg {
-    background-color: #ffff99; /* Un amarillo más claro */
+    background-color: #ffffc7; /* Un amarillo más claro */
 }
