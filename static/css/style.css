@@ -23,6 +23,28 @@ h1 {
 
 }
 
+.admd{
+    color: #AE0C45;
+    text-align: center;
+    font-family: 'Manrope', sans-serif;
+    font-size: 4.3vw;
+    font-style: normal;
+    letter-spacing: -0.3vw;
+    font-weight: bolder;
+    margin-bottom: 1vw;
+}
+
+.meow{
+    color: #AE0C45;
+    text-align: center;
+    font-family: 'Manrope', sans-serif;
+    font-size: 4.3vw;
+    font-style: normal;
+    letter-spacing: -0.3vw;
+    font-weight: bolder;
+    margin-top: -3vw;
+}
+
 h2 {
     color: #AE0C45;
     text-align: center;
@@ -58,10 +80,45 @@ h2 {
     margin-bottom: -0.6vw;    
 }
 
+.reserv{
+    color: #AE0C45;
+    text-align: center;
+    font-family: Manrope;
+    font-size: 2vw;
+    font-style: normal;
+    font-weight: bold;
+    margin-top: -1vw;
+    letter-spacing: -0.1vw;
+    margin-bottom: -2vw;    
+}
+
+.reserp{
+    color: #AE0C45;
+    text-align: center;
+    font-family: Manrope;
+    font-size: 2vw;
+    font-style: normal;
+    font-weight: bold;
+    letter-spacing: -0.1vw;
+    margin-bottom: -2vw;    
+}
+
 .infoc{
     margin-top: 1vw;
     margin-bottom: 1.1vw;
     background-color: rgb(255, 255, 255);
+}
+
+.lilt{
+    color: #AE0C45;
+    text-align: center;
+    font-family: 'Manrope';
+    font-size: 2.6vw;
+    font-style: normal;
+    font-weight: bolder;
+    margin-top: 0.05vw;
+    letter-spacing: -0.1vw;
+    margin-bottom: 2vw;
 }
 
 h4 {
@@ -100,6 +157,12 @@ h6 {
 
 * {
     font-family: Manrope, sans-serif; /* General font family for nice typography */
+}
+
+.accordion{
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-bottom: 2vw;
 }
 
 .background-image1 {
@@ -142,6 +205,56 @@ h6 {
     width: 80%;
     margin: 0 auto;
     padding: 20px;  
+}
+
+.containern{
+    margin-top: 4vw;
+}
+
+.container my-4{
+    margin-top: -1vw;
+}
+
+.containeres{
+    margin-top: 5.5vw;
+    margin-bottom: -5vw;
+    margin-left: 8vw;
+    margin-right: 8vw;
+}
+
+.containerRES{
+    margin-top: 5.5vw;
+    margin-bottom: -5vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+
+.containerS{
+    margin-top: 5vw;
+    margin-bottom: 2vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+
+.containerC{
+    margin-top: 5.5vw;
+    margin-bottom: -1vw;
+    margin-left: 14vw;
+    margin-right: 14vw;
+}
+
+.containerEP{
+    margin-top: 5.5vw;
+    margin-bottom: -1vw;
+    margin-left: -3vw;
+    margin-right: -3vw;
+
+}
+
+.custom-accordion-body {
+    padding: 1rem 1rem;
+    background-color: #fff; /* Puedes ajustar el color de fondo según tus necesidades */
+    border-top: 1px solid var(--bs-gray-100); /* Puedes ajustar el color del borde según tus necesidades */
 }
 
 .fondouno{
@@ -218,16 +331,11 @@ h6 {
     margin-bottom: 1vw;
 }
 
-.repant{
-    color: #AE0C45;
-    text-align: center;
-    font-family: 'Manrope', sans-serif;
-    font-size: 2vw;
-    font-style: normal;
-    font-weight: bolder;
-    margin-top: 0.05vw;
-    letter-spacing: -0.1vw;
-    margin-bottom: 1vw;
+.sloganre {
+    font-size: 1.5vw; /* Slightly larger slogan for emphasis */
+    text-align: center; /* Center align slogan */
+    margin-bottom: -1.5vw; /* Consistent bottom margin for spacing */
+    margin-top: -0.5vw;
 }
 
 .reportn{

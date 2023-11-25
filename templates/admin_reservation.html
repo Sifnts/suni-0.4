@@ -28,8 +28,7 @@
           </div>
         </div>
     </nav>
-    <div class="container mt-3">
-        <!-- Sección para Mensajes Flash -->
+    <div class="container">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
@@ -42,11 +41,11 @@
         {% endwith %}
     </div>
 
-    <div class="container my-4">
-        <h1 class="my-4">Admin Reservations</h1>
+    <div class="containern">
+        <h1 class="meow">Admin Reservations</h1>
         <form method="post" action="{{ url_for('update_reservation_status') }}">
             <section>
-                <h2>Reservations</h2>
+                <h2 class="reserv">Reservations</h2>
                 <div class="container my-4">
                     <div class="row justify-content-center">
                         <div class="col-sm-12 col-md-10">

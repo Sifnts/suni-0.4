@@ -37,9 +37,9 @@
             </div>
             {% endif %}
             <h1>Reportar un problema</h1>
-            <p class="slogan">Aquí puedes realizar reportes sobre incidencias que hayas observado en tus salones.</p>
+            <p class="sloganre">Aquí puedes realizar reportes sobre incidencias que hayas observado en tus salones.</p>
         </div>
-        <div class="container my-4">
+        <div class="containeres">
             <div class="row justify-content-center">
                 <div class="col-sm-12 col-md-8">
                     <div class="card-shadow">
@@ -69,8 +69,8 @@
                 </div>
             </div>
         </div>
-        <div class="container my-4">
-            <h2 class="repant">Reportes Anteriores</h2>
+        <div class="containerS">
+            <h2 class="lilt">Reportes Anteriores</h2>
             <div class="accordion" id="accordionReports">
                 {% for report in reports %}
                     <div class="accordion-item">
@@ -80,7 +80,7 @@
                             </button>
                         </h2>
                         <div id="collapse{{ report.incidentReportId }}" class="accordion-collapse collapse" aria-labelledby="heading{{ report.incidentReportId }}" data-bs-parent="#accordionReports">
-                            <div class="accordion-body">
+                            <div class="accordion-body custom-accordion-body">
                                 <strong>Salón:</strong> {{ report.classroomNumber }}<br>
                                 <strong>Fecha de Incidencia:</strong> {{ report.incidentDate }}<br>
                                 <strong>Descripción:</strong> {{ report.description }}<br>
